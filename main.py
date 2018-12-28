@@ -354,7 +354,7 @@ for ward in ward_list:
         
         number_of_floors=temp_new['count_floors_pre_eq'].sum()
         value = number_of_floors/len(temp_new)
-        mega_data['avg_floors_before_quake_municipal']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_floors_before_quake_municipal'])
+        mega_data['avg_floors_before_quake_ward']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_floors_before_quake_ward'])
 
 
 ### AVERAGE NUMBER OF FLOORS AFTER EARTHQUAKE  DISTRICT, MUNICIPAL and WARD
@@ -384,7 +384,7 @@ for mun in municipal_list:
         mega_data['avg_floors_after_quake_municipal']=np.where(mega_data['vdcmun_id']==mun, value, mega_data['avg_floors_after_quake_municipal'])
 
 #Ward LEvel
-mega_data['avg_floors_after_quake_municipal']=0
+mega_data['avg_floors_after_quake_ward']=0
 for ward in ward_list:
         temp_new = pd.DataFrame()
         temp_new = mega_data.loc[mega_data.ward_id_x == ward, :]
@@ -394,7 +394,7 @@ for ward in ward_list:
         number_of_floors=temp_new['count_floors_post_eq'].sum()
         value=number_of_floors/len(temp_new)
         
-        mega_data['avg_floors_after_quake_municipal']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_floors_after_quake_municipal'])
+        mega_data['avg_floors_after_quake_ward']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_floors_after_quake_ward'])
 
 ### AVERAGE NUMBER OF FAMILIES IN A DISTRICT & MUNICIPAL
 #district level 
@@ -442,4 +442,90 @@ for ward in ward_list:
     value=number_of_families/len(temp_new)
     mega_data['avg_number_families_in_municipal']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_number_families_in_municipal'])
     mega_data['number_of_families_in_municipal']=np.where(mega_data['ward_id_x']==ward, number_of_families, mega_data['number_of_families_in_municipal'])    
+
+### AVERAGE Height OF Building BEFORE EARTHQUAKE  DISTRICT, MUNICIPAL and WARD level
+#District LEvel
+mega_data['avg_height_of_building_before_quake_district']=0
+for dist in district_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.district_id == dist, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+        
+        height_of_building=temp_new['height_ft_pre_eq'].sum()
+        value=height_of_building/len(temp_new)
+        
+        mega_data['avg_height_of_building_before_quake_district']=np.where(mega_data['district_id']==dist, value, mega_data['avg_height_of_building_before_quake_district'])
+#Municipal LEvel
+mega_data['avg_height_of_building_before_quake_municipal']=0
+for mun in municipal_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.vdcmun_id == mun, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+       
+        height_of_building=temp_new['height_ft_pre_eq'].sum()
+        value=height_of_building/len(temp_new)
+        
+        mega_data['avg_height_of_building_before_quake_municipal']=np.where(mega_data['vdcmun_id']==mun, value, mega_data['avg_height_before_quake_municipal'])
+#ward level
+mega_data['avg_height_of_building_before_quake_ward']=0
+for ward in ward_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.ward_id_x == ward, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index' ,  axis=1 , inplace = True)
+        height_of_building=temp_new['height_ft_pre_eq'].sum()
+        
+        value = number_of_floors/len(temp_new)
+        mega_data['avg_height_of_building_before_quake_ward']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_height_of_building_before_quake_ward'])
+
+
+### AVERAGE Height OF Building AFTER EARTHQUAKE  DISTRICT, MUNICIPAL and WARD level
+
+#District LEvel
+mega_data['avg_height_of_building_after_quake_district']=0
+for dist in district_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.district_id == dist, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+        
+        height_of_building=temp_new['height_ft_post_eq'].sum()
+        value=height_of_building/len(temp_new)
+        
+        mega_data['avg_height_of_building_after_quake_district']=np.where(mega_data['district_id']==dist, value, mega_data['avg_height_of_building_after_quake_district'])
+#Municipal LEvel
+mega_data['avg_height_of_building_after_quake_municipal']=0
+for mun in municipal_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.vdcmun_id == mun, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+        
+        height_of_building=temp_new['height_ft_post_eq'].sum()
+        value=height_of_building/len(temp_new)
+        
+        mega_data['avg_height_of_building_after_quake_municipal']=np.where(mega_data['vdcmun_id']==mun, value, mega_data['avg_height_of_building_after_quake_municipal'])
+
+#Ward LEvel
+mega_data['avg_height_of_building_after_quake_ward']=0
+for ward in ward_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.ward_id_x == ward, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+        
+        height_of_building=temp_new['height_ft_post_eq'].sum()
+        value=height_of_building/len(temp_new)
+        
+        mega_data['avg_height_of_building_after_quake_ward']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_height_of_building_after_quake_ward'])
+
+
+
+
+
+
+
+
 

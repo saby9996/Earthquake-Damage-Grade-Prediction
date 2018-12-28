@@ -383,6 +383,18 @@ for mun in municipal_list:
         
         mega_data['avg_floors_after_quake_municipal']=np.where(mega_data['vdcmun_id']==mun, value, mega_data['avg_floors_after_quake_municipal'])
 
+#Ward LEvel
+mega_data['avg_floors_after_quake_municipal']=0
+for ward in ward_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.ward_id_x == ward, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+        
+        number_of_floors=temp_new['count_floors_post_eq'].sum()
+        value=number_of_floors/len(temp_new)
+        
+        mega_data['avg_floors_after_quake_municipal']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_floors_after_quake_municipal'])
 
 ### AVERAGE NUMBER OF FAMILIES IN A DISTRICT & MUNICIPAL
 mega_data['avg_number_families_in_municipal']=0

@@ -561,7 +561,46 @@ for ward in ward_list:
         
         mega_data['avg_age_of_building_ward']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_age_of_building_ward'])      
 
+#Average plinth area of building in district , muncipal and ward level 
 
+  
+#District LEvel
+mega_data['avg_plinth_area_of_building_district']=0
+for dist in district_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.district_id == dist, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+        
+       plinth_area__of_building=temp_new['plinth_area_sq_ft'].sum()
+       value=plinth_area__of_building/len(temp_new)
+        
+        mega_data['avg_plinth_area_of_building_district']=np.where(mega_data['district_id']==dist, value, mega_data['avg_plinth_area_of_building_district'])
+#Municipal LEvel
+mega_data['avg_plinth_area_of_building_municipal']=0
+for mun in municipal_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.vdcmun_id == mun, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+        
+       plinth_area__of_building=temp_new['plinth_area_sq_ft'].sum()
+       value=plinth_area__of_building/len(temp_new)
+        
+        mega_data['avg_plinth_area_of_building_municipal']=np.where(mega_data['vdcmun_id']==mun, value, mega_data['avg_plinth_area_of_building_municipal'])
+
+#Ward LEvel
+mega_data['avg_plinth_area_building_ward']=0
+for ward in ward_list:
+        temp_new = pd.DataFrame()
+        temp_new = mega_data.loc[mega_data.ward_id_x == ward, :]
+        temp_new = temp_new.reset_index()
+        temp_new.drop('index', axis=1, inplace=True)
+        
+        plinth_area__of_building=temp_new['plinth_area_sq_ft'].sum()
+        value=plinth_area__of_building/len(temp_new)
+        
+        mega_data['avg_plinth_area_building_ward']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_plinth_area_building_ward'])      
 
 
 

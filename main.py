@@ -397,6 +397,23 @@ for ward in ward_list:
         mega_data['avg_floors_after_quake_municipal']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_floors_after_quake_municipal'])
 
 ### AVERAGE NUMBER OF FAMILIES IN A DISTRICT & MUNICIPAL
+#district level 
+mega_data['avg_number_families_in_district']=0
+mega_data['number_of_families_in_district']=0
+for dist in district_list:
+    temp_new=pd.DataFrame()
+    temp_new=mega_data.loc[mega_data.district_id== dist,:]
+    temp_new=temp_new.reset_index()
+    temp_new.drop('index', axis=1, inplace=True)
+    
+    number_of_families=temp_new['count_families'].sum()
+    value=number_of_families/len(temp_new)
+    
+    mega_data['avg_number_families_in_district']=np.where(mega_data['district_id']==dist, value, mega_data['avg_number_families_in_district'])
+    mega_data['number_of_families_in_district']=np.where(mega_data['district_id']==dist, number_of_families, mega_data['number_of_families_in_district'])    
+
+# muncipal level
+    
 mega_data['avg_number_families_in_municipal']=0
 mega_data['number_of_families_in_municipal']=0
 for mun in municipal_list:
@@ -409,8 +426,20 @@ for mun in municipal_list:
     value=number_of_families/len(temp_new)
     
     mega_data['avg_number_families_in_municipal']=np.where(mega_data['vdcmun_id']==mun, value, mega_data['avg_number_families_in_municipal'])
-    mega_data['number_of_families_in_municipal']=np.where(mega_data['district_id']==dist, number_of_families, mega_data['number_of_families_in_municipal'])    
+    mega_data['number_of_families_in_municipal']=np.where(mega_data['vdcmun_id']==mun, number_of_families, mega_data['number_of_families_in_municipal'])    
+
+#ward level 
     
-
-
+mega_data['avg_number_families_in_ward']=0
+mega_data['number_of_families_in_ward']=0
+for ward in ward_list:
+    temp_new=pd.DataFrame()
+    temp_new=mega_data.loc[mega_data.ward_id_x== ward,:]
+    temp_new=temp_new.reset_index()
+    temp_new.drop('index', axis=1, inplace=True)
+    
+    number_of_families=temp_new['count_families'].sum()
+    value=number_of_families/len(temp_new)
+    mega_data['avg_number_families_in_municipal']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_number_families_in_municipal'])
+    mega_data['number_of_families_in_municipal']=np.where(mega_data['ward_id_x']==ward, number_of_families, mega_data['number_of_families_in_municipal'])    
 

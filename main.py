@@ -9,7 +9,7 @@ import math
 import re
 import pymysql as db
 import os
-#import cv2
+import cv2
 import sklearn
 import datetime
 #from matplotlib import pyplot as plt

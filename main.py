@@ -601,7 +601,7 @@ for ward in ward_list:
         value=plinth_area__of_building/len(temp_new)
         
         mega_data['avg_plinth_area_building_ward']=np.where(mega_data['ward_id_x']==ward, value, mega_data['avg_plinth_area_building_ward'])      
-
+#changes done
 
 
 

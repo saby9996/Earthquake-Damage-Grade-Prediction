@@ -589,7 +589,7 @@ for mun in municipal_list:
         
         mega_data['avg_plinth_area_of_building_municipal']=np.where(mega_data['vdcmun_id']==mun, value, mega_data['avg_plinth_area_of_building_municipal'])
 
-#Ward LEvel
+#Ward LEveL
 mega_data['avg_plinth_area_building_ward']=0
 for ward in ward_list:
         temp_new = pd.DataFrame()
